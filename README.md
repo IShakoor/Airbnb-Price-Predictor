@@ -18,6 +18,18 @@ Size: 66,679 rows & 18 columns
 
 ## 📈 Exploratory Data Analysis (EDA)
 
+Exploratory Data Analysis (EDA) was conducted to uncover key trends, patterns, and relationships within the data. This step helped guide feature engineering and informed modelling decisions by identifying variables with strong potential to influence price.
+
+The following are some examples of visualisations created to support this analysis:
+
+![Missing Values Summary](assets/missing_values.png)
+
+![Feature Correlation Heatmap](assets/heatmap.png)
+
+![Property Type - Price Distribution](assets/property_type_dist.png)
+
+![People Accomodated - Price Distribution](assets/accomodated_dist.png)
+
 
 
 
