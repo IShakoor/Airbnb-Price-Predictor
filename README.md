@@ -30,6 +30,17 @@ The following are some examples of visualisations created to support this analys
 
 ![People Accomodated - Price Distribution](assets/accomodated_dist.png)
 
+🧹 Data Cleaning and Preprocessing
+
+Data Formatting: Correcting data format, including date, money, and correcting data types.
+Dropping Columns: Columns with low predictive power were dropped to keep the data focused and prevent noise.
+Missing Values: Took a nuanced approach, using different methods for different columns, including removal, median filling, and flagging.
+Feature Transformation: Numerical feature which showed large variance were log-transformed to make them easier to handle.
+Outlier Handling: Features with a high number of outliers were winsorized to prevent skewed data.
+Feature Engineering: 
+
+
+
 
 
 
