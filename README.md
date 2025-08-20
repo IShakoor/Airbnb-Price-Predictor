@@ -11,9 +11,11 @@ By providing data-informed pricing recommendations, the model empowers hosts to 
 
 ## 📊 Data Sources & Structure
 
-Source: https://www.kaggle.com/datasets/whenamancodes/london-uk-airbnb-open-data/data
-City: London
-Size: 66,679 rows & 18 columns
+**Source**: https://www.kaggle.com/datasets/whenamancodes/london-uk-airbnb-open-data/data
+
+**City**: London
+
+**Size**: 66,679 rows & 18 columns
 
 
 ## 📈 Exploratory Data Analysis (EDA)
@@ -30,15 +32,37 @@ The following are some examples of visualisations created to support this analys
 
 ![People Accomodated - Price Distribution](assets/accomodated_dist.png)
 
-🧹 Data Cleaning and Preprocessing
+## 🧹 Data Cleaning and Preprocessing
 
-Data Formatting: Correcting data format, including date, money, and correcting data types.
-Dropping Columns: Columns with low predictive power were dropped to keep the data focused and prevent noise.
-Missing Values: Took a nuanced approach, using different methods for different columns, including removal, median filling, and flagging.
-Feature Transformation: Numerical feature which showed large variance were log-transformed to make them easier to handle.
-Outlier Handling: Features with a high number of outliers were winsorized to prevent skewed data.
-Feature Engineering: 
+**Data Formatting**: Correcting data format, including date, money, and correcting data types.
 
+**Dropping Columns**: Columns with low predictive power were dropped to keep the data focused and prevent noise.
+
+**Missing Values**: Took a nuanced approach, using different methods for different columns, including removal, median filling, and flagging.
+
+**Feature Transformation**: Numerical feature which showed large variance were log-transformed to make them easier to handle.
+
+**Outlier Handling**: Features with a high number of outliers were winsorized to prevent skewed data.
+
+**Feature Engineering**: Current features were used to extrapolate new, innovative features to boost model performance.
+
+**Feature Encoding**: Converted categorical features to numerical equivalents for the model to use.
+
+## 🤖 Model Building
+
+To accurately predict listing prices, an XGBoost Regressor was chosen as the primary model. XGBoost is a powerful gradient boosting algorithm known for its:
+
+- Excellent performance on structured/tabular data
+
+- Built-in regularization to reduce overfitting
+
+- Fast training speeds and scalability
+
+- Ability to handle missing data natively
+
+To maximize model performance, hyperparameters were tuned using RandomizedSearchCV, a faster and more efficient alternative to exhaustive grid search. The tuning process involved searching over a wide range of values to find the best combination of parameters based on 5-fold cross-validation R² scores.
+
+![Model Parameters](assets/model_parameters.png)
 
 
 
