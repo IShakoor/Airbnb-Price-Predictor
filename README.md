@@ -64,8 +64,7 @@ To maximize model performance, hyperparameters were tuned using RandomizedSearch
 
 ![Model Parameters](assets/model_parameters.png)
 
-
-## 💪 Model Training & Evaluation Process
+## 💪 Model Training & Evaluation Process
 
 To ensure reliable model performance, all relevant engineered features were used while carefully removing price-related variables from the dataset to prevent data leakage. The target variable 'log_price' was selected to reduce skewness and improve generalisation.
 
