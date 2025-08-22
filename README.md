@@ -65,8 +65,41 @@ To maximize model performance, hyperparameters were tuned using RandomizedSearch
 ![Model Parameters](assets/model_parameters.png)
 
 
+## 💪 Model Training & Evaluation Process
+
+To ensure reliable model performance, all relevant engineered features were used while carefully removing price-related variables from the dataset to prevent data leakage. The target variable 'log_price' was selected to reduce skewness and improve generalisation.
+
+The dataset was first split using a standard 80/20 train-test split to validate performance on unseen data. During model development, 5-fold cross-validation was applied on the training set to assess generalisability and tune parameters.
+
+Finally, the model was trained on the full training set and evaluated on the test set using several performance metrics to gauge its effectiveness on real-world, unseen data.
+
+## 🔬 Model Results
+
+To evaluate how accurately the model can predict Airbnb listing prices, several standard testing methods were used. Here's what we found:
+
+**Cross-Validation Results**
+
+Cross-validation is a technique where the model is tested across multiple subsets of the data. This helps assess how well the model generalizes to different scenarios and avoids overfitting.
+
+- R² Scores: [0.8702, 0.8641, 0.8735, 0.8669, 0.8694]
+
+- Mean R²: 0.8688
+
+- Standard Deviation: 0.0032 (very low, indicating consistent performance)
+
+**Final Performance (Real Price Scale)**
+
+The model was trained and evaluated on the log of the price (log_price) to improve stability and performance. To interpret the results in real-world terms, predictions were converted back to the actual price scale.
+
+| Metric                  | Value    | Explanation                                                                 |
+|-------------------------|----------|-----------------------------------------------------------------------------|
+| RMSE (avg. £ error)     | £35.72   | On average, the model’s predictions are about £35 off from actual prices. (excellent for real estate)  |
+| MAPE (avg. % error)     | 12.87%   | Predictions are, on average, within ~13% of the actual price.              |
+| R² (accuracy score)     | 0.8723   | Indicates strong accuracy—about 87% of the variation in prices is captured.|
 
 
+## 📝 Summary
 
+This XGBoost model demonstrates high accuracy, low variance, and strong generalization to new, unseen data. By combining effective feature engineering, careful data preprocessing, and thorough model tuning, the final pipeline delivers reliable and interpretable price predictions—useful for helping Airbnb hosts set competitive and realistic listing prices.
 
 
