@@ -8,7 +8,6 @@ Airbnb hosts often face challenges in setting competitive prices that balance pr
 
 By providing data-informed pricing recommendations, the model empowers hosts to optimize their pricing strategies, stay competitive in the market, and ultimately maximize revenue.
 
-
 ## 📊 Data Sources & Structure
 
 **Source**: https://www.kaggle.com/datasets/whenamancodes/london-uk-airbnb-open-data/data
@@ -80,11 +79,11 @@ To evaluate how accurately the model can predict Airbnb listing prices, several 
 
 Cross-validation is a technique where the model is tested across multiple subsets of the data. This helps assess how well the model generalizes to different scenarios and avoids overfitting.
 
-- R² Scores: [0.8702, 0.8641, 0.8735, 0.8669, 0.8694]
+- R² Scores: [0.7976 0.8147 0.8123 0.8102 0.7979]
 
-- Mean R²: 0.8688
+- Mean R²: 0.8066
 
-- Standard Deviation: 0.0032 (very low, indicating consistent performance)
+- Standard Deviation: 0.0073 (very low, indicating consistent performance)
 
 **Final Performance (Real Price Scale)**
 
@@ -92,10 +91,36 @@ The model was trained and evaluated on the log of the price (log_price) to impro
 
 | Metric                  | Value    | Explanation                                                                 |
 |-------------------------|----------|-----------------------------------------------------------------------------|
-| RMSE (avg. £ error)     | £35.72   | On average, the model’s predictions are about £35 off from actual prices. (excellent for real estate)  |
-| MAPE (avg. % error)     | 12.87%   | Predictions are, on average, within ~13% of the actual price.              |
-| R² (accuracy score)     | 0.8723   | Indicates strong accuracy—about 87% of the variation in prices is captured.|
+| RMSE (avg. £ error)     | £40.48   | On average, the model’s predictions are about £40 off from actual prices. (excellent for real estate)  |
+| MAPE (avg. % error)     | 20.26%   | Predictions are, on average, within ~20% of the actual price.              |
+| R² (accuracy score)     | 0.8254   | Indicates strong accuracy—about 83% of the variation in prices is captured.|
 
+
+## 🛠️ Residual Analysis
+
+Residuals are a useful metric to show the difference between actual observed values and model predictions. Analyzing residuals is crucial for evaluating model fit and detecting potential issues such as bias, heteroskedasticity (changing error variance), or underperformance in specific data ranges. A good predictive model should produce residuals that are randomly scattered around zero with no clear trends, implying that the model captures the underlying patterns in the data well.
+
+![Residuals](assets/residuals.png)
+
+**Left: Residuals vs. True Price**
+
+- Each point represents an individual prediction error, plotted against the true target value.
+
+- The red dashed line shows the zero-error line.
+
+- The black curve is a LOWESS (Locally Weighted Scatterplot Smoothing) trendline that helps visualize any non-random patterns in residuals.
+
+The LOWESS line shows a clear upward trend at higher true price levels, indicating that the model tends to underpredict more expensive items—evident through increasingly positive residuals. Additionally, the spread of residuals grows with price, suggesting heteroskedasticity: the model's uncertainty increases for higher-priced predictions. The residual distribution is not symmetrically centered around zero in these upper price ranges, pointing to a degree of bias. Despite these issues at the high end, the model performs with reasonable accuracy across most of the price spectrum, making it a solid choice for most use cases.
+
+**Right: Error by Price Quantile**
+
+This subplot splits the dataset into price quantiles and plots two error metrics:
+
+- **MAPE (%)** — Mean Absolute Percentage Error
+
+- **RMSE / AvgTrue** — Normalized Root Mean Squared Error
+
+The highest MAPE appears in the lowest price quantile, indicating that percentage errors are largest for the cheapest items. As prices rise, MAPE steadily declines, suggesting the model performs relatively better—in percentage terms—on more expensive items. However, this contrasts with the earlier residual plot, where absolute errors increase with price, underscoring how different evaluation metrics can offer different perspectives. Meanwhile, the RMSE normalized by the average true price remains fairly stable across all price ranges, reflecting a consistent level of error relative to price.
 
 ## 📝 Summary
 
